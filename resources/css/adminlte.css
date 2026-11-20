@@ -1,0 +1,682 @@
+/*
+ * AdminLTE 4 stylesheet entry point with PUTRA MANDIRI Design System.
+ */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'overlayscrollbars/overlayscrollbars.css';
+@import 'admin-lte/dist/css/adminlte.css';
+
+/* ==========================================================================
+   1. DESIGN TOKENS (PUTRA MANDIRI 24 JAM MINIMARKET)
+   ========================================================================== */
+:root {
+    --pm-primary: #15803d;
+    --pm-primary-rgb: 21, 128, 61;
+    --pm-primary-hover: #166534;
+    --pm-primary-active: #14532d;
+    --pm-primary-subtle: #f0fdf4;
+    --pm-primary-border: #bbf7d0;
+    --pm-primary-text: #14532d;
+
+    --pm-success: #15803d;
+    --pm-success-subtle: #dcfce7;
+    --pm-success-text: #166534;
+
+    --pm-warning: #b45309;
+    --pm-warning-subtle: #fef3c7;
+    --pm-warning-text: #92400e;
+
+    --pm-danger: #b91c1c;
+    --pm-danger-subtle: #fee2e2;
+    --pm-danger-text: #991b1b;
+
+    --pm-info: #0369a1;
+    --pm-info-subtle: #e0f2fe;
+    --pm-info-text: #075985;
+
+    --pm-bg-body: #f8fafc;
+    --pm-bg-surface: #ffffff;
+    --pm-bg-muted: #f1f5f9;
+
+    --pm-text-main: #0f172a;
+    --pm-text-muted: #475569;
+    --pm-text-light: #94a3b8;
+
+    --pm-border: #e2e8f0;
+    --pm-border-focus: #15803d;
+
+    --pm-radius-sm: 6px;
+    --pm-radius-md: 10px;
+    --pm-radius-lg: 14px;
+    --pm-radius-full: 9999px;
+
+    --pm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --pm-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --pm-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+    --pm-touch-min: 44px;
+
+    /* Bootstrap 5 variable hooks */
+    --bs-primary: var(--pm-primary);
+    --bs-primary-rgb: var(--pm-primary-rgb);
+    --bs-link-color: var(--pm-primary);
+    --bs-link-hover-color: var(--pm-primary-hover);
+    --bs-border-color: var(--pm-border);
+}
+
+/* ==========================================================================
+   2. GLOBAL LAYOUT & RESPONSIVENESS
+   ========================================================================== */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    background-color: var(--pm-bg-body);
+    color: var(--pm-text-main);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Prevent accidental global horizontal overflow on main content only (preserves sidebar sticky) */
+.app-main,
+.app-content {
+    overflow-x: clip;
+    max-width: 100%;
+}
+
+/* Tabular figures for numbers, currency, and timestamps */
+.tabular-nums,
+table,
+.price-display,
+.stat-number,
+.total-display {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Accessible Skip Link */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 1rem;
+    background: var(--pm-primary);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    z-index: 9999;
+    border-radius: var(--pm-radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s ease-in-out;
+}
+.skip-link:focus {
+    top: 1rem;
+    outline: 3px solid #fef08a;
+}
+
+/* Visible focus indicators */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--pm-primary) !important;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   3. BUTTONS & CONTROLS
+   ========================================================================== */
+.btn-primary {
+    background-color: var(--pm-primary) !important;
+    border-color: var(--pm-primary) !important;
+    color: #ffffff !important;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--pm-primary-hover) !important;
+    border-color: var(--pm-primary-hover) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(21, 128, 61, 0.25);
+}
+
+.btn-outline-primary {
+    color: var(--pm-primary) !important;
+    border-color: var(--pm-primary) !important;
+    background-color: transparent;
+    font-weight: 500;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background-color: var(--pm-primary) !important;
+    border-color: var(--pm-primary) !important;
+    color: #ffffff !important;
+}
+
+/* Touch targets on mobile / tablet */
+@media (max-width: 767.98px) {
+    .btn:not(.btn-sm),
+    .form-control,
+    .form-select {
+        min-height: var(--pm-touch-min);
+        font-size: 16px; /* Prevents auto-zoom on iOS/Android */
+    }
+
+    .btn-sm {
+        min-height: 38px;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+}
+
+/* Form switch and checkboxes */
+.form-check-input:checked {
+    background-color: var(--pm-primary);
+    border-color: var(--pm-primary);
+}
+
+/* ==========================================================================
+   4. CARDS & SURFACES
+   ========================================================================== */
+.card {
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-md);
+    box-shadow: var(--pm-shadow-sm);
+    background-color: var(--pm-bg-surface);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--pm-border);
+    padding: 0.85rem 1.15rem;
+    font-weight: 600;
+}
+
+.card-header .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--pm-text-main);
+    margin: 0;
+}
+
+.card-body {
+    padding: 1.15rem;
+}
+
+/* Info Box & Small Box polish */
+.info-box {
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-md);
+    box-shadow: var(--pm-shadow-sm);
+}
+
+.small-box {
+    border-radius: var(--pm-radius-md);
+    box-shadow: var(--pm-shadow-sm);
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   5. STATUS BADGES (ACCESSIBLE: COLOR + ICON + TEXT)
+   ========================================================================== */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35em 0.7em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: var(--pm-radius-full);
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.badge-status-safe {
+    background-color: var(--pm-success-subtle);
+    color: var(--pm-success-text);
+    border-color: #86efac;
+}
+
+.badge-status-low {
+    background-color: var(--pm-warning-subtle);
+    color: var(--pm-warning-text);
+    border-color: #fde68a;
+}
+
+.badge-status-out {
+    background-color: var(--pm-danger-subtle);
+    color: var(--pm-danger-text);
+    border-color: #fca5a5;
+}
+
+.badge-status-pending {
+    background-color: var(--pm-warning-subtle);
+    color: var(--pm-warning-text);
+    border-color: #fde68a;
+}
+
+.badge-status-completed {
+    background-color: var(--pm-success-subtle);
+    color: var(--pm-success-text);
+    border-color: #86efac;
+}
+
+.badge-status-failed {
+    background-color: var(--pm-danger-subtle);
+    color: var(--pm-danger-text);
+    border-color: #fca5a5;
+}
+
+.badge-status-recorded {
+    background-color: var(--pm-primary-subtle);
+    color: var(--pm-primary-text);
+    border-color: var(--pm-primary-border);
+}
+
+/* ==========================================================================
+   6. TABLES & DATA LISTS
+   ========================================================================== */
+.table-responsive {
+    border-radius: var(--pm-radius-sm);
+    -webkit-overflow-scrolling: touch;
+}
+
+.table th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--pm-text-muted);
+    background-color: var(--pm-bg-muted);
+    border-bottom: 2px solid var(--pm-border);
+    padding: 0.75rem 0.85rem;
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 0.75rem 0.85rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--pm-border);
+}
+
+/* Row action buttons */
+.table-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    justify-content: flex-end;
+}
+
+/* ==========================================================================
+   7. POS (POINT OF SALE) SPECIFIC STYLES
+   ========================================================================== */
+.pos-container {
+    position: relative;
+}
+
+@media (min-width: 1200px) {
+    .pos-cart-panel {
+        position: sticky;
+        top: 76px;
+        max-height: calc(100vh - 96px);
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.product-card {
+    background: #ffffff;
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-md);
+    padding: 0.85rem;
+    text-align: left;
+    transition: all 0.15s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 110px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.product-card:hover:not(:disabled) {
+    border-color: var(--pm-primary);
+    box-shadow: var(--pm-shadow-md);
+    transform: translateY(-2px);
+}
+
+.product-card:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.product-card:disabled {
+    opacity: 0.55;
+    background-color: var(--pm-bg-muted);
+    cursor: not-allowed;
+    border-style: dashed;
+}
+
+.product-card-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--pm-text-main);
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-card-price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--pm-primary);
+}
+
+/* Cart items list */
+.pos-cart-items {
+    max-height: 320px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Quantity input group in cart */
+.pos-qty-group {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-sm);
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.pos-qty-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--pm-bg-muted);
+    color: var(--pm-text-main);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.1s ease;
+}
+
+.pos-qty-btn:hover {
+    background: #e2e8f0;
+}
+
+.pos-qty-input {
+    width: 44px;
+    height: 36px;
+    border: none;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Quick cash chips */
+.quick-cash-chip {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--pm-radius-full);
+    border: 1px solid var(--pm-border);
+    background: #ffffff;
+    color: var(--pm-text-main);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.quick-cash-chip:hover {
+    border-color: var(--pm-primary);
+    background: var(--pm-primary-subtle);
+    color: var(--pm-primary-text);
+}
+
+/* Mobile Sticky Bottom Bar for POS */
+.pos-mobile-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid var(--pm-border);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+    padding: 0.75rem 1rem;
+    z-index: 1040;
+    display: none;
+}
+
+@media (max-width: 1199.98px) {
+    .pos-mobile-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+
+    .pos-page-wrapper {
+        padding-bottom: 84px !important;
+    }
+}
+
+/* ==========================================================================
+   8. DIGITAL SERVICES (PULSA & TOKEN LISTRIK)
+   ========================================================================== */
+.copyable-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--pm-bg-muted);
+    border: 1px solid var(--pm-border);
+    border-radius: var(--pm-radius-sm);
+    padding: 0.2rem 0.5rem;
+    font-family: monospace;
+    font-size: 0.95rem;
+}
+
+.copyable-box button {
+    border: none;
+    background: transparent;
+    color: var(--pm-primary);
+    padding: 0.1rem 0.25rem;
+    cursor: pointer;
+}
+
+.copyable-box button:hover {
+    color: var(--pm-primary-hover);
+}
+
+/* App Sidebar Full Height & Pinned Brand */
+.app-sidebar {
+    min-height: 100vh !important;
+    height: 100% !important;
+    position: sticky !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    align-self: stretch !important;
+    display: flex !important;
+    flex-direction: column !important;
+    z-index: 1030 !important;
+    background-color: #1e293b !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-sidebar .sidebar-brand {
+    flex-shrink: 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2 !important;
+    background-color: #1e293b !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.app-sidebar .sidebar-wrapper {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+.app-sidebar .brand-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1rem;
+}
+
+.app-sidebar .brand-title {
+    color: #ffffff !important;
+}
+
+.app-sidebar .brand-subtitle {
+    color: #86efac !important;
+}
+
+/* User Menu Cleanup (hides unneeded dummy links) */
+.user-menu .user-body {
+    display: none !important;
+}
+
+/* Hide demo messages & notifications icons from top navbar */
+.nav-link:has(.bi-chat-text),
+.nav-link:has(.bi-bell-fill),
+.nav-item:has(.bi-chat-text),
+.nav-item:has(.bi-bell-fill),
+li:has(.bi-chat-text),
+li:has(.bi-bell-fill) {
+    display: none !important;
+}
+
+/* ==========================================================================
+   9. AUTH (LOGIN) SPECIFIC STYLES
+   ========================================================================== */
+.login-page {
+    background: radial-gradient(circle at 50% 20%, #f0fdf4 0%, #f1f5f9 85%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 440px;
+    padding: 1.25rem;
+}
+
+.login-box .card {
+    border: 1px solid var(--pm-primary-border);
+    border-radius: var(--pm-radius-xl, 1rem) !important;
+    box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.login-box .card.card-outline.card-primary {
+    border-top: none !important;
+}
+
+.login-box .card-header {
+    background: #15803d !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 1.5rem 1.25rem !important;
+    text-align: center;
+}
+
+.login-box .card-header a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box .card-header a:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+    border-radius: var(--pm-radius-sm);
+}
+
+.login-box .card-header .brand-wrapper {
+    color: #ffffff !important;
+}
+
+.login-box .card-header .brand-title {
+    color: #ffffff !important;
+    font-size: 1.35rem;
+    line-height: 1.2;
+}
+
+.login-box .card-header .brand-subtitle {
+    color: #bbf7d0 !important;
+    font-size: 0.72rem !important;
+    font-weight: 500;
+}
+
+.login-box .card-header .brand-icon {
+    color: #15803d !important;
+    background: #ffffff !important;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-box .card-body {
+    padding: 1.75rem 1.5rem !important;
+}
+
+/* ==========================================================================
+   10. PRINT STYLES
+   ========================================================================== */
+@media print {
+    /* Hide all layout elements on print */
+    .app-header,
+    .app-sidebar,
+    .app-footer,
+    .main-footer,
+    .sidebar-overlay,
+    .no-print,
+    .btn,
+    .pos-mobile-bar,
+    form.no-print {
+        display: none !important;
+    }
+
+    body, .app-main, .app-wrapper, .app-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        width: 100% !important;
+    }
+
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+    }
+
+    th, td {
+        border-color: #333333 !important;
+    }
+
+    /* Thermal receipt specific rules */
+    @page {
+        margin: 2mm;
+    }
+}
